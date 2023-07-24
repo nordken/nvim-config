@@ -41,9 +41,9 @@ packer.init {
 return packer.startup(function(use)
   -- My plugins here
   use "wbthomason/packer.nvim" -- Have packer manage itself
-  use "nvim-lua/popup.nvim" -- An implementation of the Popup API from vim in Neovim
-  use "nvim-lua/plenary.nvim" -- Useful lua functions used ny lots of plugins
-  use "windwp/nvim-autopairs" -- Autopairs, integrates with both cmp and treesitter
+  use "nvim-lua/popup.nvim"    -- An implementation of the Popup API from vim in Neovim
+  use "nvim-lua/plenary.nvim"  -- Useful lua functions used ny lots of plugins
+  use "windwp/nvim-autopairs"  -- Autopairs, integrates with both cmp and treesitter
   use 'nvim-lualine/lualine.nvim'
   use {
     'nvim-tree/nvim-tree.lua',
@@ -63,15 +63,15 @@ return packer.startup(function(use)
   use {
     'numToStr/Comment.nvim',
     config = function()
-        require('Comment').setup()
+      require('Comment').setup()
     end
   }
 
   -- LSP
   use "neovim/nvim-lspconfig"
-  use "williamboman/mason.nvim" -- simple to use language server installer
+  use "williamboman/mason.nvim"           -- simple to use language server installer
   use "williamboman/mason-lspconfig.nvim" -- simple to use language server installer
-  use "jose-elias-alvarez/null-ls.nvim" -- LSP diagnostics and code actions
+  use "jose-elias-alvarez/null-ls.nvim"   -- LSP diagnostics and code actions
 
   -- Completions
   use "hrsh7th/cmp-buffer"
