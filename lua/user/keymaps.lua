@@ -34,6 +34,7 @@ keymap("n", "<C-Right>", ":vertical resize +2<CR>", opts)
 -- Navigate buffers
 keymap("n", "<S-l>", ":bnext<CR>", opts)
 keymap("n", "<S-h>", ":bprevious<CR>", opts)
+keymap("n", "<leader>x", ":bd<CR>", opts)
 
 -- Move text up and down
 keymap("n", "<A-j>", "<Esc>:m .+1<CR>==gi", opts)
@@ -71,5 +72,31 @@ keymap("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
 keymap("n", "<leader>e", ":NvimTreeToggle<cr>", opts)
 
 -- Telescope
-keymap("n", "<leader>f", "<cmd>lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({ previewer = false }))<cr>", opts)
-keymap("n", "<c-t>", "<cmd>Telescope live_grep<cr>", opts)
+keymap("n", "<leader>ff",
+  "<cmd>lua require 'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({ previewer = false }))<cr>",
+  opts)
+keymap("n", "<leader>fg", "<cmd>lua require 'telescope.builtin'.live_grep()<cr>", opts)
+keymap("n", "<leader>fb", "<cmd>lua require 'telescope.builtin'.buffers()<cr>", opts)
+keymap("n", "<leader>fh", "<cmd>lua require 'telescope.builtin'.help_tags()<cr>", opts)
+
+-- Rust Debugging
+keymap("n", "<leader>db", "<cmd>DapToggleBreakpoint<cr>", opts)
+keymap("n", "<leader>ds",
+  "<cmd>lua local widgets = require('dap.ui.widgets'); widgets.sidebar(widgets.scopes).open()<cr>", opts)
+keymap("n", "<leader>dc",
+  "<cmd>lua local widgets = require('dap.ui.widgets'); widgets.sidebar(widgets.scopes).close()<cr>", opts)
+
+-- Crates
+keymap('n', '<leader>ct', "<cmd>lua require('crates').toggle()<cr>", opts)
+keymap('n', '<leader>cr', "<cmd>lua require('crates').reload()<cr>", opts)
+
+keymap('n', '<leader>cv', "<cmd>lua require('crates').show_versions_popup()<cr>", opts)
+keymap('n', '<leader>cf', "<cmd>lua require('crates').show_features_popup()<cr>", opts)
+keymap('n', '<leader>cd', "<cmd>lua require('crates').show_dependencies_popup()<cr>", opts)
+
+keymap('n', '<leader>cu', "<cmd>lua require('crates').update_crate()<cr>", opts)
+keymap('v', '<leader>cu', "<cmd>lua require('crates').update_crates()<cr>", opts)
+keymap('n', '<leader>ca', "<cmd>lua require('crates').update_all_crates()<cr>", opts)
+keymap('n', '<leader>cU', "<cmd>lua require('crates').upgrade_crate()<cr>", opts)
+keymap('v', '<leader>cU', "<cmd>lua require('crates').upgrade_crates()<cr>", opts)
+keymap('n', '<leader>cA', "<cmd>lua require('crates').upgrade_all_crates()<cr>", opts)

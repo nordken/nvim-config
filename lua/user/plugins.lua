@@ -85,6 +85,42 @@ return packer.startup(function(use)
   use "L3MON4D3/LuaSnip"
   use "saadparwaiz1/cmp_luasnip"
 
+  -- Rust Development
+  use {
+    "rust-lang/rust.vim",
+    ft = "rust",
+    init = function()
+      vim.g.rustfmt_autosave = 1
+    end
+  }
+  use {
+    "simrat39/rust-tools.nvim",
+    ft = "rust",
+    dependencies = "neovim/nvim-lspconfig",
+    opts = function()
+      return require "user.lsp.rust-tools"
+    end,
+    config = function(_, opts)
+      require("rust-tools").setup(opts)
+    end
+  }
+  use "mfussenegger/nvim-dap"
+  use {
+    "saecki/crates.nvim",
+    ft = { "rust", "toml" },
+    requires = { 'nvim-lua/plenary.nvim' },
+    config = function()
+      local crates = require('crates')
+      crates.setup({
+        null_ls = {
+          enabled = true,
+          name = "crates.nvim"
+        }
+      })
+      crates.show()
+    end
+  }
+
   -- Treesitter
   use {
     'nvim-treesitter/nvim-treesitter',
