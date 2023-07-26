@@ -56,6 +56,15 @@ return packer.startup(function(use)
     tag = "*",
     requires = 'nvim-tree/nvim-web-devicons'
   }
+  use({
+    "Pocco81/auto-save.nvim",
+    config = function()
+      require("auto-save").setup {
+        -- your config goes here
+        -- or just leave it empty :)
+      }
+    end,
+  })
 
   -- Colorschemes
   use "folke/tokyonight.nvim"
@@ -107,7 +116,7 @@ return packer.startup(function(use)
   use "mfussenegger/nvim-dap"
   use {
     "saecki/crates.nvim",
-    ft = { "rust", "toml" },
+    ft = "toml",
     requires = { 'nvim-lua/plenary.nvim' },
     config = function()
       local crates = require('crates')
